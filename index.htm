@@ -1,0 +1,93 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>
+  <meta charset="utf-8" />  
+  <title>{{title}}</title>  
+  <link href="css/styles.css" media="all" rel="stylesheet" type="text/css" />
+  <meta name="description" content="" /> 
+  <meta name="keywords" content="" /> 
+  <script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-21199369-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+  </script>  
+</head>  
+<body>
+<div class="flip_board">
+  <div class="flip">
+    <h2 class="title">DAYS</h2>
+    <span class="value" id="days">00</span>
+  </div>
+  <div class="flip">
+    <h2 class="title">HOURS</h2>
+    <span class="value" id="hours">00</span>
+  </div>
+  <div class="flip">
+    <h2 class="title">MINS</h2>
+    <span class="value" id="mins">00</span>
+  </div>
+
+  <ul>
+    <li><img src="images/icon_calendar.png" width="32" height="32" alt="Calendar" />{{deadline}}</li>
+    <li><img src="images/icon_clock.png" width="32" height="32" alt="Clock" />{{HH:MM}}</li>
+    <li><img src="images/icon_map.png" width="32" height="32" alt="Map" />{{where}} <a href="#google-map-link" class="map">{{link}}</a></li>
+  </ul>
+
+  <div class="desc">
+    <h3>Friends and Foes!</h3>
+    <p>On this special day we kindly ask you not to bring flowers as their quickly vanishing beauty will only be enjoyed for a couple of days.</p>
+    <p>Instead it would be great if you could get us a lotto ticket or wine or book or CD of your choice as it could stay with us for longer.</p>
+  </div>
+</div>
+
+<div id="bg_gradient"></div>
+<img src="images/weronikaandrafal.jpg" alt="Weronika and Rafał" id="bg" />
+
+<a href="http://www.paranoida.com/" id="author"><img src="images/paranoida.png" alt="paranoida.com - Rafał Bromirski" /></a>
+
+<script>
+  function twoDigits(x)
+  {
+    var res = "";
+    x.toString().length == 1 ? res = "0"+x: res = x;
+    return res;  
+  }
+
+  // --- remove --- 
+  var _tmp = new Date();
+  var deadline = new Date();
+  deadline.setDate(_tmp.getDate()+30);
+  // --- end --- 
+  // remove these 3 lines ^
+
+  //var deadline = new Date("August 6, 2011 13:00:00");
+  var today = new Date();
+
+  var days_full = (deadline - today) / (24*3600*1000);
+  var days = twoDigits(parseInt(days_full));
+
+  var hours_full = (days_full - days) * 24;
+  var hours = twoDigits(parseInt(hours_full));
+
+  var mins_full = (hours_full - hours) * 60;
+  var mins = twoDigits(parseInt(mins_full));
+
+  var counter = {}
+  counter.days = days;
+  counter.hours = hours;
+  counter.mins = mins;
+
+  document.getElementById("days").innerHTML = counter.days;
+  document.getElementById("hours").innerHTML = counter.hours;
+  document.getElementById("mins").innerHTML = counter.mins;
+</script>
+</body>
+</html>
